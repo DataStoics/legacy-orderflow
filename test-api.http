@@ -28,6 +28,7 @@ Content-Type: application/json
 }
 
 ### Add to cart (use token from login)
+# Note: Need qty >= 4 to reach $100 minimum order ($29.99 × 4 = $119.96 + tax + shipping > $100)
 POST http://localhost:5001/cart/add
 Content-Type: application/json
 Authorization: Bearer {{login.response.body.token}}
