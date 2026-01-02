@@ -1,0 +1,15 @@
+# Run legacy-orderflow locally without devcontainer
+# Usage: docker-compose up
+
+services:
+  orderflow:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    ports:
+      - "5001:5001"
+    volumes:
+      - .:/workspace:cached
+    environment:
+      - FLASK_ENV=development
+    command: python app.py

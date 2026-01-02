@@ -4,12 +4,13 @@ __pycache__/
 *$py.class
 
 # Virtual env
-venv/
 .venv/
+venv/
 env/
 
 # IDE
 .idea/
+.vscode/
 *.swp
 *.swo
 

@@ -1,0 +1,59 @@
+# Test the OrderFlow API
+# Requires REST Client extension (humao.rest-client)
+
+### Health check
+GET http://localhost:5001/health
+
+### List products
+GET http://localhost:5001/products
+
+### Register a user
+POST http://localhost:5001/register
+Content-Type: application/json
+
+{
+    "email": "test@example.com",
+    "password": "password123",
+    "type": "regular"
+}
+
+### Login
+# @name login
+POST http://localhost:5001/login
+Content-Type: application/json
+
+{
+    "email": "test@example.com",
+    "password": "password123"
+}
+
+### Add to cart (use token from login)
+POST http://localhost:5001/cart/add
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.token}}
+
+{
+    "product_id": "prod_001",
+    "quantity": 5
+}
+
+### View cart
+GET http://localhost:5001/cart
+Authorization: Bearer {{login.response.body.token}}
+
+### Create order
+POST http://localhost:5001/order
+Authorization: Bearer {{login.response.body.token}}
+
+### List orders
+GET http://localhost:5001/orders
+Authorization: Bearer {{login.response.body.token}}
+
+### Admin: List users (no auth required - security issue!)
+GET http://localhost:5001/admin/users
+
+### Sales report
+GET http://localhost:5001/report/sales
+
+### Debug: View system state (security issue!)
+GET http://localhost:5001/debug/state
